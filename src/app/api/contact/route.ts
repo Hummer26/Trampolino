@@ -1,5 +1,6 @@
 import {NextResponse} from "next/server";
 import {Resend} from "resend";
+import {ZodError} from "zod";
 
 import {contactSchema} from "@/features/contact-form/schema";
 
@@ -43,7 +44,12 @@ ${data.message}
     });
 
     return NextResponse.json({ok: true});
-  } catch {
-    return NextResponse.json({ok: false, message: "Invalid request"}, {status: 400});
+  } catch (error) {
+    if (error instanceof SyntaxError || error instanceof ZodError) {
+      return NextResponse.json({ok: false, message: "Invalid request"}, {status: 400});
+    }
+
+    console.error("Contact form submission failed", error);
+    return NextResponse.json({ok: false, message: "Unable to send message"}, {status: 502});
   }
 }
