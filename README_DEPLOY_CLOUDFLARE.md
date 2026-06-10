@@ -89,6 +89,8 @@ pnpm cf:build
 
 This creates the OpenNext output in `.open-next/`.
 
+Do not use `pnpm build` as the Cloudflare build command for deployment. `pnpm build` only runs `next build`; it does not create the `.open-next/` Worker bundle required by Wrangler/OpenNext.
+
 ## Preview In Cloudflare Workers Runtime
 
 ```bash
@@ -132,6 +134,35 @@ The Worker name is configured as:
 
 ```text
 trampolino
+```
+
+## Cloudflare Dashboard Build Settings
+
+If you deploy from GitHub with Cloudflare Workers Builds and Cloudflare asks for both a build command and a deploy command, use:
+
+```text
+Build command: pnpm cf:build
+Deploy command: pnpm cf:deploy
+```
+
+Alternative single-command setup:
+
+```text
+Build command: pnpm deploy
+Deploy command: leave empty
+```
+
+Do not use this combination:
+
+```text
+Build command: pnpm build
+Deploy command: npx wrangler deploy
+```
+
+That runs a normal Next.js build, then Wrangler looks for the OpenNext output and fails with:
+
+```text
+ERROR Could not find compiled Open Next config, did you run the build command?
 ```
 
 ## Custom Domain
