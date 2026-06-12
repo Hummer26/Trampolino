@@ -1,6 +1,5 @@
 import type {Metadata} from "next";
 import {NextIntlClientProvider} from "next-intl";
-import {getMessages} from "next-intl/server";
 import {notFound} from "next/navigation";
 
 import {Footer} from "@/components/layout/footer";
@@ -55,12 +54,12 @@ export default async function LocaleLayout({children, params}: Props) {
   if (!isLocale(rawLocale)) notFound();
 
   const locale = rawLocale as Locale;
-  const messages = await getMessages();
+  const messages = (await import(`@/messages/${locale}.json`)).default;
   const content = await getSiteContent(locale);
 
   return (
-    <NextIntlClientProvider messages={messages}>
-      <Header locale={locale} />
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <Header locale={locale} navigation={messages.Navigation} languageLabel={messages.LanguageSwitcher.label} />
       {children}
       <Footer locale={locale} content={content} />
     </NextIntlClientProvider>

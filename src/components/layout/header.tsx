@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {Menu, X} from "lucide-react";
 import {useState} from "react";
-import {useTranslations} from "next-intl";
 
 import {Button} from "@/components/ui/button";
 import {localeLabels, locales, type Locale} from "@/i18n/routing";
@@ -19,10 +18,11 @@ const navItems = [
   ["contact", "contact"]
 ] as const;
 
-export function Header({locale}: {locale: Locale}) {
-  const t = useTranslations("Navigation");
-  const lang = useTranslations("LanguageSwitcher");
+type NavigationLabels = Record<(typeof navItems)[number][0], string>;
+
+export function Header({locale, navigation, languageLabel}: {locale: Locale; navigation: NavigationLabels; languageLabel: string}) {
   const [open, setOpen] = useState(false);
+  const sectionHref = (target: string) => `/${locale}#${target}`;
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 py-4">
@@ -33,13 +33,13 @@ export function Header({locale}: {locale: Locale}) {
         </Link>
         <nav className="hidden items-center gap-1 lg:flex">
           {navItems.map(([key, target]) => (
-            <a key={key} href={`#${target}`} className="rounded-full px-3 py-2 text-sm font-bold text-slate-700 transition hover:bg-brand-sky hover:text-brand-blue">
-              {t(key)}
+            <a key={key} href={sectionHref(target)} className="rounded-full px-3 py-2 text-sm font-bold text-slate-700 transition hover:bg-brand-sky hover:text-brand-blue">
+              {navigation[key]}
             </a>
           ))}
         </nav>
         <div className="hidden items-center gap-2 lg:flex">
-          <label className="sr-only" htmlFor="locale-switcher">{lang("label")}</label>
+          <label className="sr-only" htmlFor="locale-switcher">{languageLabel}</label>
           <select
             id="locale-switcher"
             value={locale}
@@ -53,7 +53,7 @@ export function Header({locale}: {locale: Locale}) {
             ))}
           </select>
           <Button asChild>
-            <a href="#contact">{t("contact")}</a>
+            <a href={sectionHref("contact")}>{navigation.contact}</a>
           </Button>
         </div>
         <button type="button" className="rounded-full p-2 text-brand-blue lg:hidden" aria-label="Menu" onClick={() => setOpen((value) => !value)}>
@@ -64,8 +64,8 @@ export function Header({locale}: {locale: Locale}) {
         <div className="mx-auto mt-3 max-w-7xl rounded-3xl bg-white p-4 shadow-soft lg:hidden">
           <nav className="grid gap-1">
             {navItems.map(([key, target]) => (
-              <a key={key} href={`#${target}`} onClick={() => setOpen(false)} className="rounded-2xl px-4 py-3 font-bold text-slate-700 hover:bg-brand-sky">
-                {t(key)}
+              <a key={key} href={sectionHref(target)} onClick={() => setOpen(false)} className="rounded-2xl px-4 py-3 font-bold text-slate-700 hover:bg-brand-sky">
+                {navigation[key]}
               </a>
             ))}
           </nav>
