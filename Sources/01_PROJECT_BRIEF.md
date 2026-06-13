@@ -13,7 +13,7 @@ Legal address to be confirmed before launch: **via alla Chiesa 2, 6515**.
 > Important: the legal name, full address, UID/CHE number, VAT/MWST number and responsible person must be confirmed by the client before publishing legal pages.
 
 ## Existing website
-https://saltotrampolino.com
+https://saltotrampolino.ch
 
 The existing website is a basic unfinished business-card website. The new website should preserve the business essence, but be much more modern, polished, visually attractive and conversion-oriented.
 

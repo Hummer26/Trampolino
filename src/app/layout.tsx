@@ -7,7 +7,7 @@ const inter = Inter({subsets: ["latin"], variable: "--font-inter", display: "swa
 const poppins = Poppins({subsets: ["latin"], weight: ["600", "700", "800", "900"], variable: "--font-poppins", display: "swap"});
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://saltotrampolino.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://saltotrampolino.ch"),
   title: "Salto Trampolino",
   description: "Bungee trampoline e castelli gonfiabili per eventi in Svizzera."
 };

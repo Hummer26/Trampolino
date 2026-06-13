@@ -10,7 +10,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
 
   const locale = rawLocale as Locale;
   const content = await getSiteContent(locale);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://saltotrampolino.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://saltotrampolino.ch";
 
   const jsonLd = {
     "@context": "https://schema.org",

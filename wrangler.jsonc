@@ -11,6 +11,16 @@
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
+  "routes": [
+    {
+      "pattern": "saltotrampolino.ch",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.saltotrampolino.ch",
+      "custom_domain": true
+    }
+  ],
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",

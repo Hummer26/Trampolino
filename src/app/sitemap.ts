@@ -3,7 +3,7 @@ import type {MetadataRoute} from "next";
 import {locales} from "@/i18n/routing";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://saltotrampolino.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://saltotrampolino.ch";
   const now = new Date();
 
   return locales.flatMap((locale) => [

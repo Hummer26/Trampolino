@@ -20,7 +20,7 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
   const {locale: rawLocale} = await params;
   const locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
   const content = await getSiteContent(locale);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://saltotrampolino.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://saltotrampolino.ch";
   const path = `/${locale}`;
 
   return {
