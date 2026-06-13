@@ -22,9 +22,9 @@ export async function POST(request: Request) {
     }
 
     const resend = new Resend(apiKey);
-    await resend.emails.send({
+    const {error} = await resend.emails.send({
       from,
-      to,
+      to: [to],
       replyTo: data.email,
       subject: `New Salto Trampolino request${data.eventType ? ` - ${data.eventType}` : ""}`,
       text: `
@@ -42,6 +42,11 @@ Message:
 ${data.message}
       `.trim()
     });
+
+    if (error) {
+      console.error("Resend rejected contact form submission", error);
+      return NextResponse.json({ok: false, message: "Unable to send message"}, {status: 502});
+    }
 
     return NextResponse.json({ok: true});
   } catch (error) {

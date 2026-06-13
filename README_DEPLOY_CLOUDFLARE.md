@@ -2,6 +2,8 @@
 
 This project is a Next.js 15 App Router site prepared for Cloudflare Workers with the OpenNext Cloudflare adapter.
 
+Do not deploy this repository as a plain Cloudflare Pages static site. The project has a server-side `/api/contact` route that sends email through Resend, so it needs the OpenNext Cloudflare Worker runtime.
+
 ## Stack
 
 - Next.js 15 App Router
@@ -60,7 +62,7 @@ Required for the contact form:
 
 ```env
 RESEND_API_KEY=
-CONTACT_EMAIL=
+CONTACT_EMAIL=plazaswiss@gmail.com
 RESEND_FROM_EMAIL=
 NEXT_PUBLIC_SITE_URL=
 ```
@@ -90,6 +92,8 @@ pnpm cf:build
 This creates the OpenNext output in `.open-next/`.
 
 Do not use `pnpm build` as the Cloudflare build command for deployment. `pnpm build` only runs `next build`; it does not create the `.open-next/` Worker bundle required by Wrangler/OpenNext.
+
+Do not use Cloudflare Pages with an empty build command. If Pages says `No build command specified. Skipping build step`, it will only upload repository files and the site will return 404.
 
 ## Preview In Cloudflare Workers Runtime
 
@@ -138,11 +142,24 @@ trampolino
 
 ## Cloudflare Dashboard Build Settings
 
+Use Cloudflare Workers, not Cloudflare Pages.
+
+Create the deployment from:
+
+```text
+Cloudflare Dashboard
+→ Workers & Pages
+→ Workers
+→ Create
+→ Import a repository
+```
+
 If you deploy from GitHub with Cloudflare Workers Builds and Cloudflare asks for both a build command and a deploy command, use:
 
 ```text
 Build command: pnpm cf:build
 Deploy command: pnpm cf:deploy
+Root directory: /
 ```
 
 Alternative single-command setup:
@@ -150,6 +167,7 @@ Alternative single-command setup:
 ```text
 Build command: pnpm deploy
 Deploy command: leave empty
+Root directory: /
 ```
 
 Do not use this combination:
@@ -164,6 +182,19 @@ That runs a normal Next.js build, then Wrangler looks for the OpenNext output an
 ```text
 ERROR Could not find compiled Open Next config, did you run the build command?
 ```
+
+Also do not deploy this Worker configuration as a Cloudflare Pages project. Pages can report:
+
+```text
+Found wrangler.json file
+wrangler.json is not valid for Pages
+No build command specified. Skipping build step.
+Assets published
+```
+
+That means the project was created in the wrong Cloudflare product for this app. Use Workers Builds/OpenNext instead.
+
+If you intentionally want a static Cloudflare Pages deployment, you must remove the built-in Resend API route, move the form submission to an external backend or separate Worker, add `output: "export"` to `next.config.ts`, and publish the `out` directory. That is not the current architecture of this project.
 
 ## Custom Domain
 
