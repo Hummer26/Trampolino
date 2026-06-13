@@ -20,7 +20,7 @@ The existing website is a basic unfinished business-card website. The new websit
 ## Facebook
 https://www.facebook.com/saltotrampolino
 
-Use Facebook only as a supporting source for brand presence and historical context. Do not copy outdated fixed locations or opening hours unless the client explicitly confirms them.
+Use Facebook only as a supporting source for brand presence  and historical context. Do not copy outdated fixed locations or opening hours unless the client explicitly confirms them.
 
 ## Main language
 Italian.
