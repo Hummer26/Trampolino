@@ -18,6 +18,11 @@ export async function POST(request: Request) {
     const from = process.env.RESEND_FROM_EMAIL;
 
     if (!apiKey || !from) {
+      console.error("Contact form email service is not configured", {
+        hasResendApiKey: Boolean(apiKey),
+        hasResendFromEmail: Boolean(from),
+        hasContactEmail: Boolean(process.env.CONTACT_EMAIL)
+      });
       return NextResponse.json({ok: false, message: "Email service is not configured"}, {status: 500});
     }
 

@@ -6,7 +6,6 @@ node_modules
 .env.local
 .dev.vars
 .vercel
-.env.example
 dist
 tsconfig.tsbuildinfo
 cloudflare-env.d.ts
