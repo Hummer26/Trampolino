@@ -13,7 +13,7 @@ Use the logo as a base, but make the website cleaner and more premium.
 ## Suggested color palette
 
 ### Primary
-Bright yellow inspired by the logo:
+Bright yellow  inspired by the logo:
 
 ```txt
 #FFD400
