@@ -17,7 +17,6 @@ export function Footer({locale, content}: {locale: Locale; content: SiteContent}
         <div className="grid gap-2 text-sm">
           <a href={contactLinks.phoneHref}>{contactLinks.phoneDisplay}</a>
           <a href={contactLinks.emailHref}>{contactLinks.email}</a>
-          <a href={contactLinks.facebookHref}>Facebook</a>
         </div>
         <div className="grid gap-2 text-sm">
           <div className="flex flex-wrap gap-2">

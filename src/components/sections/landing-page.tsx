@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type {ReactNode} from "react";
-import {ArrowRight, BadgeCheck, CalendarHeart, CheckCircle2, Facebook, Mail, MapPin, MessageCircle, Phone, ShieldCheck, Sparkles, Star} from "lucide-react";
+import {ArrowRight, BadgeCheck, CalendarHeart, CheckCircle2, Mail, MapPin, MessageCircle, Phone, ShieldCheck, Sparkles, Star} from "lucide-react";
 
 import {Button} from "@/components/ui/button";
 import {ContactForm} from "@/features/contact-form/contact-form";
@@ -187,7 +187,6 @@ export function LandingPage({content, locale}: {content: SiteContent; locale: Lo
               <ContactButton href={contactLinks.phoneHref} icon={<Phone />} label={`${content.contact.buttons.phone} ${contactLinks.phoneDisplay}`} />
               <ContactButton href={contactLinks.whatsappHref} icon={<MessageCircle />} label={content.contact.buttons.whatsapp} />
               <ContactButton href={contactLinks.emailHref} icon={<Mail />} label={content.contact.buttons.email} />
-              <ContactButton href={contactLinks.facebookHref} icon={<Facebook />} label={content.contact.buttons.facebook} />
             </div>
           </div>
           <ContactForm labels={content.contact.form} locale={locale} />

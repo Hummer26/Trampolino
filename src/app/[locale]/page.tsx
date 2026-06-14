@@ -21,8 +21,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
     email: "plazaswiss@gmail.com",
     telephone: "+41796152634",
     areaServed: "Switzerland",
-    description: content.seo.description,
-    sameAs: ["https://www.facebook.com/saltotrampolino"]
+    description: content.seo.description
   };
 
   return (

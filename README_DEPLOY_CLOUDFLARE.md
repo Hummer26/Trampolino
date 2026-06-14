@@ -72,7 +72,6 @@ Optional public contact values:
 ```env
 NEXT_PUBLIC_WHATSAPP_NUMBER=41796152634
 NEXT_PUBLIC_PHONE_DISPLAY=+41 79 61 52 634
-NEXT_PUBLIC_FACEBOOK_URL=https://www.facebook.com/saltotrampolino
 ```
 
 Never commit `.env`, `.env.local`, or `.dev.vars`.
@@ -125,7 +124,6 @@ For public build-time variables, configure them in Cloudflare Workers Builds / d
 NEXT_PUBLIC_SITE_URL=https://your-domain.example
 NEXT_PUBLIC_WHATSAPP_NUMBER=41796152634
 NEXT_PUBLIC_PHONE_DISPLAY=+41 79 61 52 634
-NEXT_PUBLIC_FACEBOOK_URL=https://www.facebook.com/saltotrampolino
 ```
 
 ## Deploy
@@ -208,6 +206,6 @@ If you intentionally want a static Cloudflare Pages deployment, you must remove 
 ## Notes
 
 - Do not use `output: "export"` in `next.config.ts`; the project has a server-side API route for the contact form.
-- The Resend API key is read from `process.env.RESEND_API_KEY` only on the server.
+- The Resend API key is read server-side only.
 - `public/videos/vid.mp4` is already in the correct public path for deployment.
 - `.open-next`, `.wrangler`, `.next`, `node_modules`, `.env`, `.env.local`, and `.dev.vars` are ignored by Git.

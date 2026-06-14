@@ -2,7 +2,6 @@ export const contactLinks = {
   phoneHref: "tel:+41796152634",
   emailHref: "mailto:plazaswiss@gmail.com",
   whatsappHref: `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "41796152634"}`,
-  facebookHref: process.env.NEXT_PUBLIC_FACEBOOK_URL || "https://www.facebook.com/saltotrampolino",
   phoneDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY || "+41 79 61 52 634",
   email: "plazaswiss@gmail.com"
 };
