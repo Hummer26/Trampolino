@@ -1,8 +1,28 @@
+import {getCloudflareContext} from "@opennextjs/cloudflare";
 import {NextResponse} from "next/server";
 import {Resend} from "resend";
 import {ZodError} from "zod";
 
 import {contactSchema} from "@/features/contact-form/schema";
+
+async function getEmailConfig() {
+  try {
+    const {env} = await getCloudflareContext({async: true});
+    const cloudflareEnv = env as CloudflareEnv & Record<string, string | undefined>;
+
+    return {
+      apiKey: cloudflareEnv.RESEND_API_KEY || process.env.RESEND_API_KEY,
+      to: cloudflareEnv.CONTACT_EMAIL || process.env.CONTACT_EMAIL || "plazaswiss@gmail.com",
+      from: cloudflareEnv.RESEND_FROM_EMAIL || process.env.RESEND_FROM_EMAIL
+    };
+  } catch {
+    return {
+      apiKey: process.env.RESEND_API_KEY,
+      to: process.env.CONTACT_EMAIL || "plazaswiss@gmail.com",
+      from: process.env.RESEND_FROM_EMAIL
+    };
+  }
+}
 
 export async function POST(request: Request) {
   try {
@@ -13,15 +33,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ok: true});
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
-    const to = process.env.CONTACT_EMAIL || "plazaswiss@gmail.com";
-    const from = process.env.RESEND_FROM_EMAIL;
+    const {apiKey, to, from} = await getEmailConfig();
 
     if (!apiKey || !from) {
       console.error("Contact form email service is not configured", {
         hasResendApiKey: Boolean(apiKey),
         hasResendFromEmail: Boolean(from),
-        hasContactEmail: Boolean(process.env.CONTACT_EMAIL)
+        hasContactEmail: Boolean(to)
       });
       return NextResponse.json({ok: false, message: "Email service is not configured"}, {status: 500});
     }
