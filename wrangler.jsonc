@@ -7,6 +7,12 @@
     "nodejs_compat",
     "global_fetch_strictly_public"
   ],
+  "keep_vars": true,
+  "vars": {
+    "CONTACT_EMAIL": "plazaswiss@gmail.com",
+    "RESEND_FROM_EMAIL": "Salto Trampolino <noreply@mail.saltotrampolino.ch>",
+    "NEXT_PUBLIC_SITE_URL": "https://saltotrampolino.ch"
+  },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
