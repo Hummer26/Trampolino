@@ -63,8 +63,8 @@ export function LandingPage({content, locale}: {content: SiteContent; locale: Lo
 
       <section className="bg-brand-cream py-20">
         <div className="section-shell grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-soft">
-            <Image src="/images/gallery/lake-setup.jpg" alt="Bungee trampoline all'aperto in Svizzera" fill className="object-cover" sizes="(min-width: 1024px) 45vw, 100vw" />
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-white p-8 shadow-soft">
+            <Image src="/images/logo/logo.jpg" alt="Salto Trampolino" fill className="object-contain p-8" sizes="(min-width: 1024px) 45vw, 100vw" />
           </div>
           <div>
             <p className="mb-3 font-extrabold uppercase tracking-wide text-brand-red">Salto Trampolino</p>
