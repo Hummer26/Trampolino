@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import {contactLinks} from "@/lib/contact";
+import {getCookiePolicyLabel} from "@/lib/legal-labels";
 import {locales, type Locale} from "@/i18n/routing";
 import type {SiteContent} from "@/types/site";
 
@@ -25,6 +26,7 @@ export function Footer({locale, content}: {locale: Locale; content: SiteContent}
             ))}
           </div>
           <Link href={`/${locale}/privacy`}>{content.legal.privacyTitle}</Link>
+          <Link href={`/${locale}/cookie-policy`}>{getCookiePolicyLabel(locale)}</Link>
           <Link href={`/${locale}/terms`}>{content.legal.termsTitle}</Link>
         </div>
       </div>
